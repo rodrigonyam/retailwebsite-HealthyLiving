@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-title">Product Details - HealthyLiving</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/availability.css">
+    <link rel="stylesheet" href="css/product-page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <h1>HealthyLiving</h1>
+                    <p>Your Wellness Journey Starts Here</p>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="nav-btn search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="nav-btn cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="nav-btn auth-btn" onclick="toggleAuth()" id="authBtn">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <main class="product-page-main">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="index.html#products">Products</a>
+                <span>/</span>
+                <span id="breadcrumb-product">Product Details</span>
+            </nav>
+
+            <div class="product-details-container">
+                <div class="product-image-section">
+                    <div class="product-main-image">
+                        <i class="fas fa-image product-icon" id="product-main-icon"></i>
+                        <div class="availability-badge" id="product-availability-badge">
+                            <span id="product-availability-text">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info-section">
+                    <div class="product-category-badge" id="product-category-badge">Beauty</div>
+                    <h1 class="product-name" id="product-name">Product Name</h1>
+                    <div class="product-code" id="product-code">Item Code: XXX-XXX-XXX</div>
+                    
+                    <div class="product-rating">
+                        <div class="stars" id="product-stars"></div>
+                        <span class="rating-text" id="product-rating-text">(0 reviews)</span>
+                    </div>
+
+                    <div class="product-price">
+                        <span class="current-price" id="product-price">$0.00</span>
+                        <span class="original-price" id="product-wholesale-price">$0.00</span>
+                    </div>
+
+                    <div class="product-description" id="product-description">
+                        Product description goes here...
+                    </div>
+
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <button class="qty-btn minus" onclick="updateQuantity(-1)">-</button>
+                            <input type="number" id="quantity" value="1" min="1">
+                            <button class="qty-btn plus" onclick="updateQuantity(1)">+</button>
+                        </div>
+                        <button class="btn btn-primary add-to-cart-btn" id="add-to-cart-btn" onclick="addToCartFromProduct()">
+                            Add to Cart
+                        </button>
+                        <button class="btn btn-outline wishlist-btn-product" onclick="toggleWishlistFromProduct()">
+                            <i class="fas fa-heart" id="wishlist-icon"></i>
+                        </button>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-truck"></i>
+                            <span>Free Shipping on orders over $50</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-undo"></i>
+                            <span>30-day return policy</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <div class="product-tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="details">Product Details</button>
+                    <button class="tab-btn" data-tab="ingredients">Ingredients</button>
+                    <button class="tab-btn" data-tab="usage">Use Instructions</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="details-panel">
+                        <h3>Product Details</h3>
+                        <div class="detailed-description" id="detailed-description">
+                            <p>Detailed product information will be loaded here...</p>
+                        </div>
+                        <div class="product-benefits" id="product-benefits">
+                            <h4>Key Benefits:</h4>
+                            <ul id="benefits-list">
+                                <li>Benefit 1</li>
+                                <li>Benefit 2</li>
+                            </ul>
+                        </div>
+                        <div class="product-specifications" id="product-specifications">
+                            <h4>Specifications:</h4>
+                            <div class="specs-grid" id="specs-grid">
+                                <!-- Specifications will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="ingredients-panel">
+                        <h3>Ingredients</h3>
+                        <div class="ingredients-list" id="ingredients-list">
+                            <p>Ingredients information will be loaded here...</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="usage-panel">
+                        <h3>How to Use</h3>
+                        <div class="usage-instructions" id="usage-instructions">
+                            <div class="usage-frequency" id="usage-frequency">
+                                <h4>Frequency:</h4>
+                                <p>Usage frequency will be loaded here...</p>
+                            </div>
+                            <div class="usage-steps" id="usage-steps">
+                                <h4>Instructions:</h4>
+                                <p>Usage instructions will be loaded here...</p>
+                            </div>
+                            <div class="usage-tips" id="usage-tips">
+                                <h4>Tips:</h4>
+                                <ul id="tips-list">
+                                    <li>Tip 1</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="reviews-panel">
+                        <h3>Customer Reviews</h3>
+                        <div class="reviews-container" id="reviews-container">
+                            <p>Reviews will be loaded here...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <section class="related-products">
+                <h2>Related Products</h2>
+                <div class="products-grid" id="related-products-grid">
+                    <!-- Related products will be populated here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total" id="cartTotal">Total: $0.00</div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <button class="close-search" onclick="toggleSearch()">×</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/product-page.js"></script>
+</body>
+</html>

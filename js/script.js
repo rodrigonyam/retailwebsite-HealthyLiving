@@ -8,6 +8,11 @@ let chatUserName = '';
 let chatUserEmail = '';
 let chatUserPhone = '';
 
+// Function to navigate to individual product page
+function viewProduct(productId) {
+    window.location.href = `product.html?id=${productId}`;
+}
+
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
     initializeProducts();
@@ -54,26 +59,26 @@ function createProductCard(product) {
     const canAddToCart = product.availability === 'in-stock' || product.availability === 'low-stock';
     
     card.innerHTML = `
-        <div class="product-image">
+        <div class="product-image" onclick="viewProduct(${product.id})" style="cursor: pointer;">
             <i class="fas ${product.icon}"></i>
             <div class="availability-badge ${availabilityClass}">
                 ${availabilityText}
             </div>
             <div class="product-overlay">
-                <button class="product-action-btn quick-view-btn" onclick="openProductModal(${product.id})" title="Quick View">
+                <button class="product-action-btn quick-view-btn" onclick="event.stopPropagation(); openProductModal(${product.id})" title="Quick View">
                     <i class="fas fa-eye"></i>
                 </button>
-                <button class="product-action-btn wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})" title="Add to Wishlist">
+                <button class="product-action-btn wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist(${product.id})" title="Add to Wishlist">
                     <i class="fas fa-heart"></i>
                 </button>
-                <button class="product-action-btn compare-btn ${isInComparison ? 'active' : ''}" onclick="toggleCompare(${product.id})" title="Compare">
+                <button class="product-action-btn compare-btn ${isInComparison ? 'active' : ''}" onclick="event.stopPropagation(); toggleCompare(${product.id})" title="Compare">
                     <i class="fas fa-balance-scale"></i>
                 </button>
             </div>
         </div>
         <div class="product-info">
             <span class="product-category">${getCategoryName(product.category)}</span>
-            <h3>${product.name}</h3>
+            <h3 onclick="viewProduct(${product.id})" style="cursor: pointer; color: var(--primary-color); transition: color 0.3s ease;">${product.name}</h3>
             <div class="product-code">Item Code: ${product.itemCode}</div>
             <div class="product-rating">
                 <div class="stars">

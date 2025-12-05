@@ -1,4 +1,4 @@
-// Sample product data
+// Enhanced product data with detailed information
 const products = [
     // Beauty Products
     {
@@ -13,7 +13,42 @@ const products = [
         reviewCount: 234,
         itemCode: "MIG-HS-001",
         availability: "in-stock",
-        stockCount: 45
+        stockCount: 45,
+        detailedDescription: "Transform your skin with our advanced hydrating face serum. This lightweight, fast-absorbing formula penetrates deep into the skin layers to provide long-lasting moisture and improve skin texture. Clinically tested and dermatologist approved for all skin types.",
+        benefits: [
+            "Deep hydration for up to 24 hours",
+            "Reduces fine lines and wrinkles", 
+            "Improves skin elasticity",
+            "Non-comedogenic formula",
+            "Suitable for all skin types"
+        ],
+        ingredients: [
+            "Hyaluronic Acid (2%)",
+            "Vitamin E",
+            "Glycerin",
+            "Niacinamide", 
+            "Panthenol (Pro-Vitamin B5)",
+            "Sodium Hyaluronate",
+            "Aqua (Water)",
+            "Phenoxyethanol"
+        ],
+        usage: {
+            frequency: "Apply twice daily",
+            instructions: "Cleanse your face thoroughly. Apply 2-3 drops to clean, dry skin. Gently massage in upward motions until fully absorbed. Follow with moisturizer and sunscreen during the day.",
+            tips: [
+                "Use on damp skin for better absorption",
+                "Can be layered under makeup", 
+                "Store in a cool, dry place",
+                "Avoid direct contact with eyes"
+            ]
+        },
+        specifications: {
+            volume: "30ml",
+            shelf_life: "24 months unopened, 12 months after opening",
+            origin: "Made in USA",
+            cruelty_free: true,
+            vegan: true
+        }
     },
     {
         id: 2,
@@ -27,7 +62,42 @@ const products = [
         reviewCount: 189,
         itemCode: "MIG-NC-002",
         availability: "in-stock",
-        stockCount: 28
+        stockCount: 28,
+        detailedDescription: "Rejuvenate your skin overnight with our premium anti-aging night cream. This luxurious formula combines powerful retinol with peptides to target signs of aging while you sleep. Wake up to visibly smoother, firmer, and more youthful-looking skin.",
+        benefits: [
+            "Reduces appearance of fine lines",
+            "Firms and tightens skin",
+            "Improves skin texture",
+            "Promotes cellular renewal",
+            "Deeply moisturizes overnight"
+        ],
+        ingredients: [
+            "Retinol (0.5%)",
+            "Peptide Complex",
+            "Shea Butter",
+            "Ceramides",
+            "Squalane",
+            "Vitamin E",
+            "Jojoba Oil",
+            "Dimethicone"
+        ],
+        usage: {
+            frequency: "Apply every evening",
+            instructions: "Cleanse face thoroughly. Apply a small amount to face and neck, avoiding eye area. Gently massage until absorbed. Start with 2-3 times per week, gradually increase to nightly use as tolerated.",
+            tips: [
+                "Always use sunscreen during the day when using retinol",
+                "May cause initial dryness - reduce frequency if irritation occurs",
+                "Not recommended during pregnancy",
+                "Patch test before first use"
+            ]
+        },
+        specifications: {
+            volume: "50ml",
+            shelf_life: "36 months unopened, 12 months after opening",
+            origin: "Made in France",
+            cruelty_free: true,
+            vegan: false
+        }
     },
     {
         id: 3,
@@ -41,7 +111,42 @@ const products = [
         reviewCount: 156,
         itemCode: "MIG-VM-003",
         availability: "low-stock",
-        stockCount: 8
+        stockCount: 8,
+        detailedDescription: "Revitalize and brighten your complexion with our Vitamin C Brightening Mask. This powerful treatment mask is formulated with stable vitamin C and natural brightening agents to even out skin tone and restore radiance in just 15 minutes.",
+        benefits: [
+            "Brightens and evens skin tone",
+            "Reduces dark spots and hyperpigmentation",
+            "Boosts collagen production", 
+            "Antioxidant protection",
+            "Instant glow and radiance"
+        ],
+        ingredients: [
+            "L-Ascorbic Acid (15%)",
+            "Kojic Acid",
+            "Niacinamide",
+            "Alpha Arbutin",
+            "Licorice Root Extract",
+            "Kaolin Clay",
+            "Glycolic Acid",
+            "Aloe Vera Extract"
+        ],
+        usage: {
+            frequency: "Use 2-3 times per week",
+            instructions: "Apply a thick, even layer to clean, dry skin. Avoid eye and lip areas. Leave on for 10-15 minutes. Rinse thoroughly with lukewarm water. Follow with moisturizer and sunscreen.",
+            tips: [
+                "Use in the evening for best results",
+                "May cause tingling sensation - this is normal",
+                "Always follow with SPF protection",
+                "Discontinue use if irritation occurs"
+            ]
+        },
+        specifications: {
+            volume: "75ml", 
+            shelf_life: "24 months unopened, 6 months after opening",
+            origin: "Made in Korea",
+            cruelty_free: true,
+            vegan: true
+        }
     },
     {
         id: 4,
@@ -99,7 +204,61 @@ const products = [
         reviewCount: 287,
         itemCode: "NAT-MV-007",
         availability: "in-stock",
-        stockCount: 67
+        stockCount: 67,
+        detailedDescription: "Support your overall health and wellness with our comprehensive multivitamin complex. This carefully formulated supplement provides essential vitamins and minerals that your body needs daily. Perfect for busy lifestyles and ensuring nutritional gaps are filled.",
+        benefits: [
+            "Supports immune system function",
+            "Boosts energy levels and reduces fatigue",
+            "Promotes healthy metabolism",
+            "Supports bone and muscle health",
+            "Enhances cognitive function and focus"
+        ],
+        ingredients: [
+            "Vitamin A (as Beta-Carotene) 5000 IU",
+            "Vitamin C (as Ascorbic Acid) 90mg",
+            "Vitamin D3 (as Cholecalciferol) 2000 IU",
+            "Vitamin E (as d-alpha-tocopherol) 30 IU",
+            "Vitamin K2 (as Menaquinone-7) 120mcg",
+            "Thiamine (B1) 1.5mg",
+            "Riboflavin (B2) 1.7mg",
+            "Niacin (B3) 20mg",
+            "Vitamin B6 (as Pyridoxine HCl) 2mg",
+            "Folate (as 5-MTHF) 400mcg",
+            "Vitamin B12 (as Methylcobalamin) 6mcg",
+            "Biotin 300mcg",
+            "Pantothenic Acid (B5) 10mg",
+            "Iron (as Ferrous Bisglycinate) 8mg",
+            "Zinc (as Zinc Bisglycinate) 11mg",
+            "Selenium (as Selenomethionine) 70mcg",
+            "Copper (as Copper Bisglycinate) 0.9mg",
+            "Manganese (as Manganese Bisglycinate) 2.3mg",
+            "Chromium (as Chromium Picolinate) 120mcg",
+            "Molybdenum (as Sodium Molybdate) 45mcg"
+        ],
+        usage: {
+            frequency: "Take 1 capsule daily",
+            instructions: "Take 1 capsule daily with food, preferably with breakfast or your largest meal of the day. Swallow whole with a full glass of water. For optimal absorption, do not take with coffee, tea, or dairy products.",
+            tips: [
+                "Take consistently at the same time each day",
+                "Best absorbed when taken with a meal containing healthy fats",
+                "Store in a cool, dry place away from direct sunlight",
+                "Do not exceed recommended dosage",
+                "Consult your healthcare provider before starting any supplement regimen"
+            ]
+        },
+        specifications: {
+            serving_size: "1 capsule",
+            servings_per_container: "60",
+            capsule_type: "Vegetarian capsules",
+            shelf_life: "36 months from manufacture date",
+            origin: "Made in USA",
+            third_party_tested: true,
+            gmp_certified: true,
+            non_gmo: true,
+            gluten_free: true,
+            dairy_free: true,
+            soy_free: true
+        }
     },
     {
         id: 8,
@@ -113,7 +272,50 @@ const products = [
         reviewCount: 198,
         itemCode: "NAT-FO-008",
         availability: "in-stock",
-        stockCount: 89
+        stockCount: 89,
+        detailedDescription: "Support your cardiovascular and brain health with our premium omega-3 fish oil supplement. Sourced from wild-caught, sustainable fish and molecularly distilled for purity. Each softgel delivers optimal amounts of EPA and DHA for maximum health benefits.",
+        benefits: [
+            "Supports heart and cardiovascular health",
+            "Promotes brain function and memory",
+            "Reduces inflammation throughout the body",
+            "Supports healthy cholesterol levels",
+            "Promotes joint health and mobility",
+            "Supports healthy skin and hair"
+        ],
+        ingredients: [
+            "Fish Oil Concentrate 1000mg",
+            "EPA (Eicosapentaenoic Acid) 180mg",
+            "DHA (Docosahexaenoic acid) 120mg",
+            "Other Omega-3 Fatty Acids 100mg",
+            "Natural Vitamin E (as mixed tocopherols)",
+            "Gelatin (softgel capsule)",
+            "Glycerin",
+            "Purified Water"
+        ],
+        usage: {
+            frequency: "Take 1-2 softgels daily",
+            instructions: "Take 1-2 softgels daily with meals. For best results, take with a meal containing fat to enhance absorption. Can be taken with breakfast, lunch, or dinner. Do not chew or break the softgel.",
+            tips: [
+                "Store in refrigerator after opening for maximum freshness",
+                "Take with meals to reduce any fishy aftertaste",
+                "Consistent daily use provides best results",
+                "If you have a fish allergy, consult your doctor before use",
+                "May take 2-3 months of consistent use to see full benefits"
+            ]
+        },
+        specifications: {
+            serving_size: "1 softgel",
+            servings_per_container: "120",
+            total_omega_3: "400mg per softgel",
+            fish_source: "Wild-caught Anchovies, Sardines, Mackerel",
+            purity: "Molecularly distilled",
+            shelf_life: "24 months from manufacture date",
+            origin: "Made in USA",
+            third_party_tested: true,
+            mercury_tested: true,
+            sustainable_sourced: true,
+            enteric_coated: false
+        }
     },
     {
         id: 9,
@@ -170,8 +372,6 @@ const products = [
         itemCode: "NAT-BC-012",
         availability: "in-stock",
         stockCount: 78
-        description: "Energy and metabolism support",
-        icon: "fa-bolt"
     },
 
     // Personal Care
