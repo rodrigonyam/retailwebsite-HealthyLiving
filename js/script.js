@@ -413,6 +413,7 @@ function setupEventListeners() {
     const authTitle = document.getElementById('authTitle');
     const authSubmit = document.getElementById('authSubmit');
     const nameGroup = document.getElementById('nameGroup');
+    const phoneGroup = document.getElementById('phoneGroup');
     
     let isLoginMode = true;
     
@@ -426,11 +427,13 @@ function setupEventListeners() {
                 authSubmit.textContent = 'Login';
                 switchAuth.innerHTML = 'Don\'t have an account? <a href="#">Sign up</a>';
                 nameGroup.style.display = 'none';
+                phoneGroup.style.display = 'none';
             } else {
                 authTitle.textContent = 'Sign Up';
                 authSubmit.textContent = 'Sign Up';
                 switchAuth.innerHTML = 'Already have an account? <a href="#">Login</a>';
                 nameGroup.style.display = 'block';
+                phoneGroup.style.display = 'block';
             }
         });
     }
@@ -846,12 +849,46 @@ function handleAuth(isLogin) {
         return;
     }
     
+    if (!isLogin) {
+        // Sign up validation - require name and phone
+        const fullName = document.getElementById('fullName').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        
+        if (!fullName.trim()) {
+            showNotification('Please enter your full name');
+            return;
+        }
+        
+        if (!phoneNumber.trim()) {
+            showNotification('Please enter your phone number');
+            return;
+        }
+        
+        // Basic phone number validation
+        const phoneRegex = /^[\+]?[(]?[\d\s\-\(\)]{10,}$/;
+        if (!phoneRegex.test(phoneNumber)) {
+            showNotification('Please enter a valid phone number');
+            return;
+        }
+        
+        // Store additional signup info
+        localStorage.setItem('userName', fullName);
+        localStorage.setItem('userPhone', phoneNumber);
+    }
+    
     // Simulate authentication
     isLoggedIn = true;
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('userEmail', email);
     
-    showNotification(isLogin ? 'Login successful!' : 'Account created successfully!');
+    if (!isLogin) {
+        const fullName = document.getElementById('fullName').value;
+        showNotification(`Welcome ${fullName}! Account created successfully!`);
+    } else {
+        const savedName = localStorage.getItem('userName') || 'User';
+        showNotification(`Welcome back ${savedName}!`);
+    }
+    
     document.getElementById('authModal').classList.remove('active');
     document.getElementById('authForm').reset();
     updateUserInterface();
