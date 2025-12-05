@@ -317,10 +317,12 @@ function setupEventListeners() {
                 showNotification('You are already logged in');
             } else {
                 // Switch to signup mode
-                document.getElementById('authTitle').textContent = 'Sign Up';
-                document.getElementById('authSubmit').textContent = 'Sign Up';
+                document.getElementById('authTitle').textContent = 'Become a Seller';
+                document.getElementById('authSubmit').textContent = 'Become a Seller';
                 document.getElementById('switchAuth').innerHTML = 'Already have an account? <a href="#">Login</a>';
                 document.getElementById('nameGroup').style.display = 'block';
+                document.getElementById('languageGroup').style.display = 'block';
+                document.getElementById('securityCodeGroup').style.display = 'block';
                 authModal.classList.add('active');
             }
             userDropdown.classList.remove('active');
@@ -336,8 +338,10 @@ function setupEventListeners() {
                 // Switch to login mode
                 document.getElementById('authTitle').textContent = 'Login';
                 document.getElementById('authSubmit').textContent = 'Login';
-                document.getElementById('switchAuth').innerHTML = 'Don\'t have an account? <a href="#">Sign up</a>';
+                document.getElementById('switchAuth').innerHTML = 'Don\'t have an account? <a href="#">Become a seller</a>';
                 document.getElementById('nameGroup').style.display = 'none';
+                document.getElementById('languageGroup').style.display = 'none';
+                document.getElementById('securityCodeGroup').style.display = 'none';
                 authModal.classList.add('active');
             }
             userDropdown.classList.remove('active');
@@ -431,19 +435,49 @@ function setupEventListeners() {
             if (isLoginMode) {
                 authTitle.textContent = 'Login';
                 authSubmit.textContent = 'Login';
-                switchAuth.innerHTML = 'Don\'t have an account? <a href="#">Sign up</a>';
+                switchAuth.innerHTML = 'Don\'t have an account? <a href="#">Become a seller</a>';
                 nameGroup.style.display = 'none';
                 phoneGroup.style.display = 'none';
+                document.getElementById('languageGroup').style.display = 'none';
+                document.getElementById('securityCodeGroup').style.display = 'none';
             } else {
-                authTitle.textContent = 'Sign Up';
-                authSubmit.textContent = 'Sign Up';
+                authTitle.textContent = 'Become a Seller';
+                authSubmit.textContent = 'Become a Seller';
                 switchAuth.innerHTML = 'Already have an account? <a href="#">Login</a>';
                 nameGroup.style.display = 'block';
                 phoneGroup.style.display = 'block';
+                document.getElementById('languageGroup').style.display = 'block';
+                document.getElementById('securityCodeGroup').style.display = 'block';
             }
         });
     }
     
+    // Security code functionality
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const sendMembershipCodeBtn = document.getElementById('sendMembershipCodeBtn');
+    
+    if (sendCodeBtn) {
+        sendCodeBtn.addEventListener('click', () => {
+            const phoneInput = document.getElementById('phoneNumber');
+            if (phoneInput.value) {
+                sendSecurityCode(phoneInput.value, 'auth');
+            } else {
+                showNotification('Please enter a phone number first', 'error');
+            }
+        });
+    }
+    
+    if (sendMembershipCodeBtn) {
+        sendMembershipCodeBtn.addEventListener('click', () => {
+            const phoneInput = document.getElementById('membershipPhone');
+            if (phoneInput.value) {
+                sendSecurityCode(phoneInput.value, 'membership');
+            } else {
+                showNotification('Please enter a phone number first', 'error');
+            }
+        });
+    }
+
     // Auth form submit
     const authForm = document.getElementById('authForm');
     if (authForm) {
@@ -453,6 +487,32 @@ function setupEventListeners() {
         });
     }
     
+    // Security code functionality
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const sendMembershipCodeBtn = document.getElementById('sendMembershipCodeBtn');
+    
+    if (sendCodeBtn) {
+        sendCodeBtn.addEventListener('click', () => {
+            const phoneInput = document.getElementById('phoneNumber');
+            if (phoneInput.value) {
+                sendSecurityCode(phoneInput.value, 'auth');
+            } else {
+                showNotification('Please enter a phone number first');
+            }
+        });
+    }
+    
+    if (sendMembershipCodeBtn) {
+        sendMembershipCodeBtn.addEventListener('click', () => {
+            const phoneInput = document.getElementById('membershipPhone');
+            if (phoneInput.value) {
+                sendSecurityCode(phoneInput.value, 'membership');
+            } else {
+                showNotification('Please enter a phone number first');
+            }
+        });
+    }
+
     // Membership form submit
     const membershipForm = document.getElementById('membershipForm');
     if (membershipForm) {
@@ -845,6 +905,33 @@ function setupEventListeners() {
     }
 }
 
+// Send security code function
+function sendSecurityCode(phoneNumber, type) {
+    const btn = type === 'auth' ? document.getElementById('sendCodeBtn') : document.getElementById('sendMembershipCodeBtn');
+    const originalText = btn.textContent;
+    
+    // Generate random 6-digit code (in real app, this would be sent via SMS)
+    const code = Math.floor(100000 + Math.random() * 900000);
+    console.log(`Security code for ${phoneNumber}: ${code}`);
+    
+    // Simulate sending code
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    
+    setTimeout(() => {
+        btn.textContent = 'Code Sent!';
+        btn.style.background = '#28a745';
+        showNotification(`Security code sent to ${phoneNumber}`);
+        
+        // Reset button after 30 seconds
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.textContent = originalText;
+            btn.style.background = '';
+        }, 30000);
+    }, 1500);
+}
+
 // Handle authentication
 function handleAuth(isLogin) {
     const email = document.getElementById('email').value;
@@ -902,6 +989,25 @@ function handleAuth(isLogin) {
 
 // Handle membership signup
 function handleMembershipSignup() {
+    const phone = document.getElementById('membershipPhone').value;
+    const language = document.getElementById('membershipLanguage').value;
+    const securityCode = document.getElementById('membershipSecurityCode').value;
+    
+    // Validate new required fields
+    if (!phone || !language || !securityCode) {
+        showNotification('Please fill in all required fields including phone, language, and security code');
+        return;
+    }
+    
+    if (securityCode.length !== 6 || !/^\d{6}$/.test(securityCode)) {
+        showNotification('Please enter a valid 6-digit security code');
+        return;
+    }
+    
+    // Store seller preferences
+    localStorage.setItem('userPhone', phone);
+    localStorage.setItem('userLanguage', language);
+    
     // Simulate payment processing
     setTimeout(() => {
         isMember = true;

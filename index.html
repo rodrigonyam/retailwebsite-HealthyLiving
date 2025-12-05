@@ -34,7 +34,7 @@
                         <div class="user-dropdown" id="userDropdown">
                             <a href="#" class="dropdown-item" id="profileLink"><i class="fas fa-user-circle"></i> Profile</a>
                             <a href="#" class="dropdown-item" id="accountLink"><i class="fas fa-cog"></i> Account Settings</a>
-                            <a href="#" class="dropdown-item" id="signupDropLink"><i class="fas fa-user-plus"></i> Sign Up</a>
+                            <a href="#" class="dropdown-item" id="signupDropLink"><i class="fas fa-user-plus"></i> Become a Seller</a>
                             <a href="#" class="dropdown-item" id="loginDropLink"><i class="fas fa-sign-in-alt"></i> Login</a>
                             <a href="#" class="dropdown-item" id="referralLink"><i class="fas fa-share-alt"></i> Referral Program</a>
                             <a href="#" class="dropdown-item" id="storeLocatorLink"><i class="fas fa-map-marker-alt"></i> Store in Your Area</a>
@@ -154,7 +154,7 @@
                         <li><i class="fas fa-check"></i> Priority customer support</li>
                         <li><i class="fas fa-check"></i> Monthly promotions</li>
                     </ul>
-                    <button class="btn btn-primary" id="signupBtn">Sign Up Now</button>
+                    <button class="btn btn-primary" id="signupBtn">Become a Seller Now</button>
                 </div>
             </div>
         </div>
@@ -573,10 +573,32 @@
                     <div class="form-group" id="phoneGroup" style="display: none;">
                         <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
                     </div>
+                    <div class="form-group" id="languageGroup" style="display: none;">
+                        <select id="preferredLanguage" required>
+                            <option value="">Select Preferred Language</option>
+                            <option value="english">English</option>
+                            <option value="spanish">Español (Spanish)</option>
+                            <option value="french">Français (French)</option>
+                            <option value="portuguese">Português (Portuguese)</option>
+                            <option value="german">Deutsch (German)</option>
+                            <option value="italian">Italiano (Italian)</option>
+                            <option value="chinese">中文 (Chinese)</option>
+                            <option value="japanese">日本語 (Japanese)</option>
+                            <option value="korean">한국어 (Korean)</option>
+                            <option value="arabic">العربية (Arabic)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="securityCodeGroup" style="display: none;">
+                        <div class="security-code-container">
+                            <input type="text" id="securityCode" placeholder="Enter 6-digit security code" maxlength="6" pattern="[0-9]{6}" required>
+                            <button type="button" class="btn btn-secondary" id="sendCodeBtn">Send Code</button>
+                        </div>
+                        <small class="security-help">We'll send a 6-digit verification code to your phone</small>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block" id="authSubmit">Login</button>
                 </form>
                 <p class="auth-switch">
-                    Don't have an account? <a href="#" id="switchAuth">Sign up</a>
+                    Don't have an account? <a href="#" id="switchAuth">Become a seller</a>
                 </p>
             </div>
         </div>
@@ -598,7 +620,29 @@
                         <input type="email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" id="membershipPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="membershipLanguage" required>
+                            <option value="">Select Preferred Language</option>
+                            <option value="english">English</option>
+                            <option value="spanish">Español (Spanish)</option>
+                            <option value="french">Français (French)</option>
+                            <option value="portuguese">Português (Portuguese)</option>
+                            <option value="german">Deutsch (German)</option>
+                            <option value="italian">Italiano (Italian)</option>
+                            <option value="chinese">中文 (Chinese)</option>
+                            <option value="japanese">日本語 (Japanese)</option>
+                            <option value="korean">한국어 (Korean)</option>
+                            <option value="arabic">العربية (Arabic)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="security-code-container">
+                            <input type="text" id="membershipSecurityCode" placeholder="Enter 6-digit security code" maxlength="6" pattern="[0-9]{6}" required>
+                            <button type="button" class="btn btn-secondary" id="sendMembershipCodeBtn">Send Code</button>
+                        </div>
+                        <small class="security-help">We'll send a 6-digit verification code to your phone</small>
                     </div>
                     <div class="form-group">
                         <input type="text" placeholder="Business Name (Optional)">
