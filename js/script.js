@@ -60,22 +60,60 @@ function initializeProducts() {
     // Check if products are available
     if (!window.products && !window.productsData) {
         console.log('Products not yet loaded, retrying...');
-        // Retry after a short delay
+        // Retry with increasing delays
         setTimeout(initializeProducts, 500);
+        setTimeout(initializeProducts, 1000);
+        setTimeout(initializeProducts, 2000);
         return;
     }
     
     displayProducts(currentFilter);
     
-    // Set up a periodic check to ensure products remain visible
-    setTimeout(() => {
+    // Set up multiple checks to ensure products remain visible
+    const checkInterval = setInterval(() => {
         const productGrid = document.getElementById('productGrid');
         if (productGrid && productGrid.children.length === 0) {
             console.log('Products disappeared, reloading...');
             displayProducts(currentFilter);
+        } else if (productGrid && productGrid.children.length > 0) {
+            // Products are showing, clear the interval
+            clearInterval(checkInterval);
         }
     }, 1000);
+    
+    // Stop checking after 30 seconds
+    setTimeout(() => clearInterval(checkInterval), 30000);
 }
+
+// Force reload products function
+function forceReloadProducts() {
+    console.log('Force reloading products...');
+    const productGrid = document.getElementById('productGrid');
+    if (productGrid) {
+        productGrid.innerHTML = '<p style="text-align: center; padding: 2rem; color: #007bff;">🔄 Loading products...</p>';
+    }
+    
+    // Try multiple approaches
+    setTimeout(() => {
+        if (typeof window.products !== 'undefined' || typeof window.productsData !== 'undefined') {
+            displayProducts(currentFilter);
+        } else {
+            console.log('Using fallback products...');
+            displayProducts('all');
+        }
+    }, 500);
+}
+
+// Make it globally available
+window.forceReloadProducts = forceReloadProducts;
+
+// Fallback products array for GitHub Pages compatibility
+const fallbackProducts = [
+    {id: 1, name: "Mignonne™ Hydrating Face Serum", category: "beauty", price: 49.99, wholesalePrice: 34.99, description: "Intensive hydration serum with hyaluronic acid", icon: "fa-tint", rating: 4.8, reviewCount: 245, itemCode: "20001B", availability: "in-stock", stockCount: 32},
+    {id: 2, name: "Mignonne™ Daily Moisturizer", category: "beauty", price: 35.99, wholesalePrice: 25.19, description: "Lightweight daily moisturizer with SPF", icon: "fa-sun", rating: 4.6, reviewCount: 189, itemCode: "20002B", availability: "in-stock", stockCount: 45},
+    {id: 3, name: "Nature™ Vitamin D3", category: "vitamins", price: 24.99, wholesalePrice: 17.49, description: "High-potency Vitamin D3 supplements", icon: "fa-pills", rating: 4.7, reviewCount: 312, itemCode: "10001V", availability: "in-stock", stockCount: 78},
+    {id: 4, name: "Nature™ Omega-3 Fish Oil", category: "vitamins", price: 29.99, wholesalePrice: 20.99, description: "Premium omega-3 fish oil capsules", icon: "fa-fish", rating: 4.5, reviewCount: 198, itemCode: "10002V", availability: "low-stock", stockCount: 8}
+];
 
 // Display products based on filter
 function displayProducts(filter) {
@@ -87,12 +125,12 @@ function displayProducts(filter) {
         return;
     }
     
-    const productsArray = window.products || window.productsData || [];
+    const productsArray = window.products || window.productsData || fallbackProducts;
     console.log('Products array:', productsArray.length, 'products available');
     
     if (!productsArray || productsArray.length === 0) {
         console.error('No products available to display');
-        productGrid.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No products available.</p>';
+        productGrid.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No products available. <button onclick="forceReloadProducts()" style="background: #ff6b6b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-left: 10px;">🔄 Try Again</button></p>';
         return;
     }
     
